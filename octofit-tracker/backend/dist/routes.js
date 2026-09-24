@@ -1,6 +1,15 @@
 import { Router } from 'express';
-import { Activity, Team, User, Workout } from './models.js';
+import { Activity, SiteStat, Team, User, Workout } from './models.js';
 const router = Router();
+router.post('/visits', async (_request, response, next) => {
+    try {
+        const siteStat = await SiteStat.findOneAndUpdate({ key: 'site' }, { $inc: { visits: 1 } }, { new: true, upsert: true, setDefaultsOnInsert: true });
+        response.json({ visits: siteStat.visits });
+    }
+    catch (error) {
+        next(error);
+    }
+});
 router.get('/users', async (_request, response, next) => {
     try {
         response.json(await User.find().sort({ createdAt: -1 }));

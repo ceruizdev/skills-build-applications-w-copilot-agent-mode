@@ -1,4 +1,6 @@
+import { useEffect, useRef, useState } from 'react'
 import { NavLink, Route, Routes, Link } from 'react-router-dom'
+import { registerVisit } from './api.js'
 import Activities from './components/Activities.jsx'
 import Leaderboard from './components/Leaderboard.jsx'
 import Teams from './components/Teams.jsx'
@@ -7,6 +9,15 @@ import Workouts from './components/Workouts.jsx'
 import './App.css'
 
 function App() {
+  const [visitCount, setVisitCount] = useState(null)
+  const visitRegistered = useRef(false)
+
+  useEffect(() => {
+    if (visitRegistered.current) return
+    visitRegistered.current = true
+    registerVisit().then((result) => setVisitCount(result.visits)).catch(() => {})
+  }, [])
+
   return (
     <div className="app-shell">
       <header className="app-header">
@@ -34,7 +45,12 @@ function App() {
           <Route path="/workouts" element={<Workouts />} />
         </Routes>
       </main>
-      <footer className="app-footer">Mergington High School <span>•</span> Move with purpose.</footer>
+      <footer className="app-footer">
+        <span>Mergington High School</span>
+        <span>•</span>
+        <span>Move with purpose.</span>
+        {visitCount !== null && <span className="visit-counter">Visits: {visitCount.toLocaleString()}</span>}
+      </footer>
     </div>
   )
 }

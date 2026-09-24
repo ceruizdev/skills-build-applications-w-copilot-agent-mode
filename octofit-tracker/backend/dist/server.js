@@ -7,9 +7,17 @@ const codespaceName = process.env.CODESPACE_NAME;
 const apiBaseUrl = codespaceName
     ? `https://${codespaceName}-8000.app.github.dev`
     : 'http://localhost:8000';
+const allowedOrigins = [
+    'http://localhost:5173',
+    ...(codespaceName ? [`https://${codespaceName}-5173.app.github.dev`] : []),
+    ...(process.env.FRONTEND_URL ? [process.env.FRONTEND_URL] : []),
+];
 app.use(express.json());
-app.use((_request, response, next) => {
-    response.header('Access-Control-Allow-Origin', process.env.FRONTEND_URL || 'http://localhost:5173');
+app.use((request, response, next) => {
+    const requestOrigin = request.headers.origin;
+    if (requestOrigin && allowedOrigins.includes(requestOrigin)) {
+        response.header('Access-Control-Allow-Origin', requestOrigin);
+    }
     response.header('Access-Control-Allow-Headers', 'Content-Type');
     response.header('Access-Control-Allow-Methods', 'GET,POST,OPTIONS');
     if (response.req.method === 'OPTIONS') {

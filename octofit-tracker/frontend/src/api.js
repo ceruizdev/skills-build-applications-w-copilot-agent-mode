@@ -18,6 +18,12 @@ export async function fetchCollection(endpoint) {
   return asCollection(await response.json())
 }
 
+export async function registerVisit() {
+  const response = await fetch(`${API_BASE_URL}/visits`, { method: 'POST' })
+  if (!response.ok) throw new Error(`Request failed with status ${response.status}`)
+  return response.json()
+}
+
 export function displayName(user) {
   return user?.displayName || user?.username || 'Unknown athlete'
 }

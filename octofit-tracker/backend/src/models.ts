@@ -45,7 +45,16 @@ const workoutSchema = new Schema(
   { timestamps: true },
 );
 
+const siteStatSchema = new Schema(
+  {
+    key: { type: String, required: true, unique: true },
+    visits: { type: Number, required: true, default: 0, min: 0 },
+  },
+  { timestamps: true },
+);
+
 export const User = model('User', userSchema);
 export const Team = model('Team', teamSchema);
 export const Activity = model('Activity', activitySchema);
 export const Workout = model('Workout', workoutSchema);
+export const SiteStat = model('SiteStat', siteStatSchema);
