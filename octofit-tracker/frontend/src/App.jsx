@@ -9,11 +9,11 @@ import Workouts from './components/Workouts.jsx'
 import './App.css'
 
 const SITE_ROUTES = Object.freeze({
-  activities: '/api/activities',
-  leaderboard: '/api/leaderboard',
-  teams: '/api/teams',
-  users: '/api/users',
-  workouts: '/api/workouts',
+  activities: '/api/activities/',
+  leaderboard: '/api/leaderboard/',
+  teams: '/api/teams/',
+  users: '/api/users/',
+  workouts: '/api/workouts/',
 })
 
 function App() {

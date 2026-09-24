@@ -1,11 +1,11 @@
 export const API_BASE_URL = '/api'
 export const API_ENDPOINTS = Object.freeze({
-  users: `${API_BASE_URL}/users`,
-  teams: `${API_BASE_URL}/teams`,
-  activities: `${API_BASE_URL}/activities`,
-  leaderboard: `${API_BASE_URL}/leaderboard`,
-  workouts: `${API_BASE_URL}/workouts`,
-  visits: `${API_BASE_URL}/visits`,
+  users: `${API_BASE_URL}/users/`,
+  teams: `${API_BASE_URL}/teams/`,
+  activities: `${API_BASE_URL}/activities/`,
+  leaderboard: `${API_BASE_URL}/leaderboard/`,
+  workouts: `${API_BASE_URL}/workouts/`,
+  visits: `${API_BASE_URL}/visits/`,
 })
 
 export function asCollection(payload) {
