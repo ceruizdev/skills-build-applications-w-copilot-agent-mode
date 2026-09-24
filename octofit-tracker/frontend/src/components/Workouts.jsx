@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react'
-import { fetchCollection, recordId } from '../api.js'
+import { API_ENDPOINTS, fetchCollection, recordId } from '../api.js'
 import { EmptyMessage, ErrorMessage, SectionHeading } from './Activities.jsx'
 
 function Workouts() {
   const [workouts, setWorkouts] = useState([])
   const [error, setError] = useState('')
-  useEffect(() => { fetchCollection('workouts').then(setWorkouts).catch((requestError) => setError(requestError.message)) }, [])
+  useEffect(() => { fetchCollection(API_ENDPOINTS.workouts).then(setWorkouts).catch((requestError) => setError(requestError.message)) }, [])
 
   return <section className="content-section">
     <SectionHeading eyebrow="Personalized guidance" title="Workouts" count={workouts.length} />

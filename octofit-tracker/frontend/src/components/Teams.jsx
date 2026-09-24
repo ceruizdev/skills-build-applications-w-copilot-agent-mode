@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react'
-import { fetchCollection, displayName, recordId } from '../api.js'
+import { API_ENDPOINTS, fetchCollection, displayName, recordId } from '../api.js'
 import { EmptyMessage, ErrorMessage, SectionHeading } from './Activities.jsx'
 
 function Teams() {
   const [teams, setTeams] = useState([])
   const [error, setError] = useState('')
-  useEffect(() => { fetchCollection('teams').then(setTeams).catch((requestError) => setError(requestError.message)) }, [])
+  useEffect(() => { fetchCollection(API_ENDPOINTS.teams).then(setTeams).catch((requestError) => setError(requestError.message)) }, [])
 
   return <section className="content-section">
     <SectionHeading eyebrow="Find your crew" title="Teams" count={teams.length} />

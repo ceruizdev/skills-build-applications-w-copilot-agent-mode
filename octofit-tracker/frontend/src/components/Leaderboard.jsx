@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react'
-import { fetchCollection, displayName, recordId } from '../api.js'
+import { API_ENDPOINTS, fetchCollection, displayName, recordId } from '../api.js'
 import { EmptyMessage, ErrorMessage, SectionHeading } from './Activities.jsx'
 
 function Leaderboard() {
   const [leaders, setLeaders] = useState([])
   const [error, setError] = useState('')
 
-  useEffect(() => { fetchCollection('leaderboard').then(setLeaders).catch((requestError) => setError(requestError.message)) }, [])
+  useEffect(() => { fetchCollection(API_ENDPOINTS.leaderboard).then(setLeaders).catch((requestError) => setError(requestError.message)) }, [])
 
   return <section className="content-section leaderboard-section">
     <SectionHeading eyebrow="Friendly competition" title="Leaderboard" count={leaders.length} />

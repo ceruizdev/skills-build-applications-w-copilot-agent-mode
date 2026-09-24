@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react'
-import { fetchCollection, displayName, recordId } from '../api.js'
+import { API_ENDPOINTS, fetchCollection, displayName, recordId } from '../api.js'
 import { EmptyMessage, ErrorMessage, SectionHeading } from './Activities.jsx'
 
 function Users() {
   const [users, setUsers] = useState([])
   const [error, setError] = useState('')
-  useEffect(() => { fetchCollection('users').then(setUsers).catch((requestError) => setError(requestError.message)) }, [])
+  useEffect(() => { fetchCollection(API_ENDPOINTS.users).then(setUsers).catch((requestError) => setError(requestError.message)) }, [])
 
   return <section className="content-section">
     <SectionHeading eyebrow="The community" title="People" count={users.length} />
