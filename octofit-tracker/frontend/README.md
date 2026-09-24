@@ -10,7 +10,7 @@ Define `VITE_CODESPACE_NAME` in `.env.local` before starting Vite. The value mus
 VITE_CODESPACE_NAME=your-codespace-name
 ```
 
-The app then calls `https://${VITE_CODESPACE_NAME}-8000.app.github.dev/api/...`. When the variable is unset, it safely falls back to `http://localhost:8000/api/...`.
+The app calls `/api/...` on the presentation origin, for example `https://${VITE_CODESPACE_NAME}-5173.app.github.dev/api/activities`. Vite proxies these requests to the backend on port `8000`, so the browser does not need to call the backend origin directly.
 
 Run the presentation tier with:
 

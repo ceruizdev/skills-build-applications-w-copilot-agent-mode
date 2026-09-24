@@ -1,10 +1,4 @@
-const codespaceName = import.meta.env.VITE_CODESPACE_NAME?.trim()
-
-const apiOrigin = codespaceName
-  ? `https://${codespaceName}-8000.app.github.dev`
-  : 'http://localhost:8000'
-
-export const API_BASE_URL = `${apiOrigin}/api`
+export const API_BASE_URL = '/api'
 export const API_ENDPOINTS = Object.freeze({
   users: `${API_BASE_URL}/users`,
   teams: `${API_BASE_URL}/teams`,
