@@ -8,6 +8,14 @@ import Users from './components/Users.jsx'
 import Workouts from './components/Workouts.jsx'
 import './App.css'
 
+const SITE_ROUTES = Object.freeze({
+  activities: '/api/activities',
+  leaderboard: '/api/leaderboard',
+  teams: '/api/teams',
+  users: '/api/users',
+  workouts: '/api/workouts',
+})
+
 function App() {
   const [visitCount, setVisitCount] = useState(null)
   const visitRegistered = useRef(false)
@@ -26,11 +34,11 @@ function App() {
           <span>OctoFit <em>Tracker</em></span>
         </Link>
         <nav className="main-nav" aria-label="Main navigation">
-          <NavLink to="/activities">Activities</NavLink>
-          <NavLink to="/leaderboard">Leaderboard</NavLink>
-          <NavLink to="/teams">Teams</NavLink>
-          <NavLink to="/users">People</NavLink>
-          <NavLink to="/workouts">Workouts</NavLink>
+          <NavLink to={SITE_ROUTES.activities}>Activities</NavLink>
+          <NavLink to={SITE_ROUTES.leaderboard}>Leaderboard</NavLink>
+          <NavLink to={SITE_ROUTES.teams}>Teams</NavLink>
+          <NavLink to={SITE_ROUTES.users}>People</NavLink>
+          <NavLink to={SITE_ROUTES.workouts}>Workouts</NavLink>
         </nav>
         <div className="header-status"><span className="status-dot" /> API online</div>
       </header>
@@ -38,11 +46,11 @@ function App() {
       <main className="page-content">
         <Routes>
           <Route path="/" element={<Dashboard />} />
-          <Route path="/activities" element={<Activities />} />
-          <Route path="/leaderboard" element={<Leaderboard />} />
-          <Route path="/teams" element={<Teams />} />
-          <Route path="/users" element={<Users />} />
-          <Route path="/workouts" element={<Workouts />} />
+          <Route path={SITE_ROUTES.activities} element={<Activities />} />
+          <Route path={SITE_ROUTES.leaderboard} element={<Leaderboard />} />
+          <Route path={SITE_ROUTES.teams} element={<Teams />} />
+          <Route path={SITE_ROUTES.users} element={<Users />} />
+          <Route path={SITE_ROUTES.workouts} element={<Workouts />} />
         </Routes>
       </main>
       <footer className="app-footer">
@@ -57,9 +65,9 @@ function App() {
 
 function Dashboard() {
   const cards = [
-    ['Activities', 'Log movement and watch your momentum build.', '/activities', '01'],
-    ['Leaderboard', 'A little friendly pressure goes a long way.', '/leaderboard', '02'],
-    ['Workouts', 'Find a session that matches your energy today.', '/workouts', '03'],
+    ['Activities', 'Log movement and watch your momentum build.', SITE_ROUTES.activities, '01'],
+    ['Leaderboard', 'A little friendly pressure goes a long way.', SITE_ROUTES.leaderboard, '02'],
+    ['Workouts', 'Find a session that matches your energy today.', SITE_ROUTES.workouts, '03'],
   ]
 
   return (

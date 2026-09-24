@@ -10,6 +10,9 @@ export default defineConfig({
       '/api': {
         target: 'http://localhost:8000',
         changeOrigin: true,
+        bypass: (request) => {
+          if (request.headers.accept?.includes('text/html')) return '/index.html'
+        },
       },
     },
   },
